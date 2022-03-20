@@ -90,11 +90,11 @@ WSGI_APPLICATION = 'fyp_django_backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dqu58fh11mipo',
-        'HOST': 'ec2-44-194-167-63.compute-1.amazonaws.com',
+        'NAME': 'd9dqf3pcd7ik6l',
+        'HOST': 'ec2-3-212-45-192.compute-1.amazonaws.com',
         'PORT': '5432',
-        'USER': 'ubihyyfegwixja',
-        'PASSWORD': '230f99ab2e5928da64d480276bee3ceb82931eae09a30f00840c4a325fd0453a',
+        'USER': 'zrxmcceifgtayq',
+        'PASSWORD': '80a930aac31e47e74da59521fa9a1595ad7fa31e4835972deda3feed68a21f91',
     }
 }
 
