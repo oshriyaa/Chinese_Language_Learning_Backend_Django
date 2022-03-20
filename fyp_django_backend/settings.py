@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-h$j=2f(-7-897m+mwax^k7qed3v7@^147kr77zu#s965nj!asl
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['10.0.2.2', '127.0.0.1']
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -76,17 +76,27 @@ WSGI_APPLICATION = 'fyp_django_backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'database_chinese_learning',
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#         'USER': 'root',
+#         'PASSWORD': '',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'database_chinese_learning',
-        'HOST': 'localhost',
-        'PORT': '3306',
-        'USER': 'root',
-        'PASSWORD': '',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'dqu58fh11mipo',
+        'HOST': 'ec2-44-194-167-63.compute-1.amazonaws.com',
+        'PORT': '5432',
+        'USER': 'ubihyyfegwixja',
+        'PASSWORD': '230f99ab2e5928da64d480276bee3ceb82931eae09a30f00840c4a325fd0453a',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
