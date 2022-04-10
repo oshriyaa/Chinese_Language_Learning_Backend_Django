@@ -1,8 +1,5 @@
-import imp
 from rest_framework import serializers
-
-from api.models import Category, User
-from api.models import Vocabulary
+from .models import *
 
 
 class CategorySerializer(serializers.ModelSerializer):

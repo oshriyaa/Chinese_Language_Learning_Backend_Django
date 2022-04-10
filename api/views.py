@@ -12,6 +12,8 @@ class Category(viewsets.ModelViewSet):
     serializer_class = CategorySerializer
 
 class Vocabulary(viewsets.ModelViewSet):
+    # search_fields = ['$InEnglish']
+    # filter_backend = (filter.SearchFilter,)
     queryset = Vocabulary.objects.all()
     serializer_class = VocabularySerializer
 

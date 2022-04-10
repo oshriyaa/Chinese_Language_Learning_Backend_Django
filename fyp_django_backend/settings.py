@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,20 +26,22 @@ SECRET_KEY = 'django-insecure-h$j=2f(-7-897m+mwax^k7qed3v7@^147kr77zu#s965nj!asl
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['10.0.2.2', '127.0.0.1']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'users',
     'jazzmin',
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
+    'rest_framework.authtoken',
     'api',
 ]
 
@@ -76,27 +79,35 @@ WSGI_APPLICATION = 'fyp_django_backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'database_chinese_learning',
-#         'HOST': 'localhost',
-#         'PORT': '3306',
-#         'USER': 'root',
-#         'PASSWORD': '',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd9dqf3pcd7ik6l',
-        'HOST': 'ec2-3-212-45-192.compute-1.amazonaws.com',
-        'PORT': '5432',
-        'USER': 'zrxmcceifgtayq',
-        'PASSWORD': '80a930aac31e47e74da59521fa9a1595ad7fa31e4835972deda3feed68a21f91',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'chinese_learning_system',
+        'HOST': 'localhost',
+        'PORT': '3306',
+        'USER': 'root',
+        'PASSWORD': '',
     }
 }
+
+AUTH_USER_MODEL = "users.NewUser"
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'd9dqf3pcd7ik6l',
+#         'HOST': 'ec2-3-212-45-192.compute-1.amazonaws.com',
+#         'PORT': '5432',
+#         'USER': 'zrxmcceifgtayq',
+#         'PASSWORD': '80a930aac31e47e74da59521fa9a1595ad7fa31e4835972deda3feed68a21f91',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -133,6 +144,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+AUDIO_ROOT = os.path.join(BASE_DIR, 'audio/')
+AUDIO_URL = 'audio/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
