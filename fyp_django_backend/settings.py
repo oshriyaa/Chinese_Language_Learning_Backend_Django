@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'fyp_django_backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'chinese_learning_system',
+        'NAME': 'database_chinese_learning',
         'HOST': 'localhost',
         'PORT': '3306',
         'USER': 'root',

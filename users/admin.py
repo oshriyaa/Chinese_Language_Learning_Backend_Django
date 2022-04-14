@@ -12,11 +12,11 @@ class UserAdminConfig(UserAdmin):
     ordering = ('-email',)
     list_display = ('email', 'id', 'user_name', 'phone_number', 'user_type',
                     'is_active')
-    # fieldsets = (
-    #     (None, {'fields': ('email', 'user_name', 'user_type')}),
-    #     ('Permissions', {'fields': ('is_active')}),
+    fieldsets = (
+        (None, {'fields': ('email', 'user_name', 'user_type')}),
+        ('Permissions', {'fields': ('is_active',)}),
         
-    # )
+    )
     formfield_overrides = {
         models.TextField: {'widget': Textarea(attrs={'rows': 20, 'cols': 60})},
     }

@@ -47,7 +47,7 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
 
 
     email = models.EmailField(_('email address'), unique=True)
-    user_name = models.CharField(max_length=150, unique=True)
+    user_name = models.CharField(max_length=150)
     phone_number = models.CharField(max_length=30, blank=False, default="0000000000")
     is_staff = models.BooleanField(default=False)
     user_type = models.CharField(choices=USER_TYPES, max_length=100, default="user")
