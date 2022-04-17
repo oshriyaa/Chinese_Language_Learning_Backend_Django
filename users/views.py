@@ -24,3 +24,11 @@ class CustomUserCreate(generics.CreateAPIView):
                 json = serializer.data
                 return Response(json, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class GetCurrentUser(generics.ListAPIView):
+    # permission_classes = [IsAuthenticated]
+    serializer_class = CustomUserSerializer
+    def get_queryset(self):
+        user = self.request.user.id
+        return NewUser.objects.filter(id=user)

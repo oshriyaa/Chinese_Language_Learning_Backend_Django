@@ -34,6 +34,7 @@ ALLOWED_HOSTS = ['10.0.2.2', '127.0.0.1']
 INSTALLED_APPS = [
     'users',
     'jazzmin',
+    'favourite',
     'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',

@@ -41,6 +41,7 @@ path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 # path(r'^static/(?P<path>.)$', serve,{'document_root': settings.STATIC_ROOT}),
 path(r'^audio/(?P<path>.)$', serve,{'document_root': settings.AUDIO_ROOT}),
 path('api/user/', include('users.urls', namespace='users')),
+path('Api/Favourites/', include('favourite.urls', namespace='favourites')),
 ]
 # urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.AUDIO_URL, document_root=settings.AUDIO_ROOT)
