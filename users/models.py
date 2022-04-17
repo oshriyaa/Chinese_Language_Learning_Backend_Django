@@ -18,7 +18,6 @@ User = settings.AUTH_USER_MODEL
 
 class CustomAccountManager(BaseUserManager):
     def create_superuser(self, email, user_name, password, **other_fields):
-
         other_fields.setdefault('is_superuser', True)
         other_fields.setdefault('is_active', True)
         other_fields.setdefault('is_staff', True)
@@ -45,8 +44,8 @@ class CustomAccountManager(BaseUserManager):
 
 class NewUser(AbstractBaseUser, PermissionsMixin):
 
-
-    email = models.EmailField(_('email address'), unique=True)
+    #MADE CHANGES HERE
+    email = models.CharField(_('username'), max_length=20, unique=True)
     user_name = models.CharField(max_length=150)
     phone_number = models.CharField(max_length=30, blank=False, default="0000000000")
     is_staff = models.BooleanField(default=False)

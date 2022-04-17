@@ -2,6 +2,7 @@ from urllib import request
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 from rest_framework import generics
+from api.models import Vocabulary
 from favourite import models
 from django.contrib.auth.models import User
 
@@ -28,7 +29,7 @@ class FavouritePhrase(APIView):
     serializer_class = FavouriteSerializer
     # queryset = Bookmark.objects.all()
     
-    def post(self, request, phraseID,format=None):
+    def post(self, request, WordID,format=None):
         # bookmark = Bookmark.objects.get()    
         # phrase = get_object_or_404(Phrase,id=phraseID)
         
@@ -36,29 +37,29 @@ class FavouritePhrase(APIView):
         user_id = self.request.user.id
 
         print('===================')
-        print(self.request.user.id)
+        print(self.request.user)
         print('====================')
 
-        return HttpResponse('Found')
-        # if models.Favourite.objects.filter(word=phraseID, user=user_id):  
-        #     print(phraseID)
+        # return HttpResponse('Found')
+        if models.Favourite.objects.filter(vocabulary=WordID, user=user_id):  
+            print(WordID)
             
-        #     models.Bookmark.objects.filter(word=phraseID, user=user_id).delete()
-        #     return HttpResponse('Found')
-        # else:     
-        #     data = { 'user': user_id, 'phrase': phraseID }
-        #     serializer = FavouriteSerializer(data=data, partial=True)
-        #     serializer.is_valid(raise_exception=True)
-        #     serializer.save()
-        #     return HttpResponse('NotFound')
+            models.Favourite.objects.filter(vocabulary=WordID, user=user_id).delete()
+            return HttpResponse('Found')
+        else:     
+            data = { 'user': user_id, 'vocabulary': WordID }
+            serializer = FavouriteSerializer(data=data, partial=True)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+            return HttpResponse('NotFound')
         
 
 # class GetBookmarkGet(generics.ListAPIView):
 #     queryset = Bookmark.objects.all()
 #     serializer_class = BookmarkSerializer
     
-# class GetBookmarkView(generics.ListAPIView):
-#     serializer_class = PhraseSerializer
-#     def get_queryset(self):
-#         user_id = self.request.user.id
-#         return Phrase.objects.filter(bookmark__user=user_id).all()
+class GetFavouriteView(generics.ListAPIView):
+    serializer_class = FavouriteSerializer
+    def get_queryset(self):
+        user_id = self.request.user.id
+        return Vocabulary.objects.filter(favourite__user=user_id).all()

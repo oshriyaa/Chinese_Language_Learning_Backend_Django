@@ -1,11 +1,11 @@
 
 
 from django.urls import path
-from favourite.views import FavouritePhrase
+from favourite.views import FavouritePhrase, GetFavouriteView
 
 
 app_name = 'favourite'
 urlpatterns = [
-    path('post/<int:phraseID>/', FavouritePhrase.as_view(),name='favourite'),
-    # path('get',GetBookmarkView.as_view(),name='getBookmark'),
+    path('post/<int:WordID>/', FavouritePhrase.as_view(),name='favourite'),
+    path('get/',GetFavouriteView.as_view(),name='getFavourites'),
 ]

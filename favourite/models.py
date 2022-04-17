@@ -10,6 +10,6 @@ User = settings.AUTH_USER_MODEL
 
 class Favourite(models.Model):
     user = models.ForeignKey(User, default=1, null=True, on_delete=models.CASCADE)
-    word = models.ForeignKey(Vocabulary, default=1, null=True, on_delete=models.CASCADE)
+    vocabulary = models.ForeignKey(Vocabulary, default=1, null=True, on_delete=models.CASCADE)
     
     objects = models.Manager()
