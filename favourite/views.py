@@ -62,4 +62,9 @@ class GetFavouriteView(generics.ListAPIView):
     serializer_class = FavouriteSerializer
     def get_queryset(self):
         user_id = self.request.user.id
-        return Vocabulary.objects.filter(favourite__user=user_id).all()
+        return models.Favourite.objects.filter(favourite__user=user_id).all()
+
+
+class GetFavouriteView(generics.ListAPIView):
+    serializer_class = FavouriteSerializer
+    queryset = models.Favourite.objects.all()

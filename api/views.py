@@ -4,6 +4,9 @@ from api.models import Vocabulary
 from api.models import User
 from api.serializer import CategorySerializer, UserSerializer, VocabularySerializer
 from rest_framework import viewsets
+from rest_framework import generics
+
+from favourite.serializers import FavouriteSerializer
 
 
 # Create your views here.
@@ -16,6 +19,7 @@ class Vocabulary(viewsets.ModelViewSet):
     # filter_backend = (filter.SearchFilter,)
     queryset = Vocabulary.objects.all()
     serializer_class = VocabularySerializer
+
 
 class User(viewsets.ModelViewSet):
     queryset = User.objects.all()
