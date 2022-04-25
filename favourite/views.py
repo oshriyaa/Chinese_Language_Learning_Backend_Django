@@ -21,50 +21,27 @@ from rest_framework.generics import GenericAPIView
 
 from favourite.serializers import FavouriteSerializer
 
-# Create your views here.
-
-# @csrf_exempt
+# Post favourite
 class FavouritePhrase(APIView):
-    # permission_classes = [IsAuthenticated]
     serializer_class = FavouriteSerializer
-    # queryset = Bookmark.objects.all()
     
     def post(self, request, WordID,format=None):
-        # bookmark = Bookmark.objects.get()    
-        # phrase = get_object_or_404(Phrase,id=phraseID)
-        
-       
         user_id = self.request.user.id
-
-        print('===================')
-        print(self.request.user)
-        print('====================')
-
-        # return HttpResponse('Found')
-        if models.Favourite.objects.filter(vocabulary=WordID, user=user_id):  
-            print(WordID)
-            
+        if models.Favourite.objects.filter(vocabulary=WordID, user=user_id):              
             models.Favourite.objects.filter(vocabulary=WordID, user=user_id).delete()
+            # return found if the data exists in database
             return HttpResponse('Found')
         else:     
             data = { 'user': user_id, 'vocabulary': WordID }
             serializer = FavouriteSerializer(data=data, partial=True)
             serializer.is_valid(raise_exception=True)
             serializer.save()
+            # return Notfound if the data doesn't exists in database
             return HttpResponse('NotFound')
         
-
-# class GetBookmarkGet(generics.ListAPIView):
-#     queryset = Bookmark.objects.all()
-#     serializer_class = BookmarkSerializer
-    
+# Get faourite Views
 class GetFavouriteView(generics.ListAPIView):
     serializer_class = FavouriteSerializer
     def get_queryset(self):
         user_id = self.request.user.id
-        return models.Favourite.objects.filter(favourite__user=user_id).all()
-
-
-class GetFavouriteView(generics.ListAPIView):
-    serializer_class = FavouriteSerializer
-    queryset = models.Favourite.objects.all()
+        return models.Favourite.objects.filter(user=user_id).all()

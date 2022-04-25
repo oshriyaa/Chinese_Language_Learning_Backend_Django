@@ -1,10 +1,13 @@
+from collections import Counter
 from django.shortcuts import render, redirect
+from api import models
 from api.models import Category
 from api.models import Vocabulary
-from api.models import User
-from api.serializer import CategorySerializer, UserSerializer, VocabularySerializer
+# from api.models import User
+from api.serializer import CategorySerializer,  VocabularySerializer, WordOfTheDaySerializer
 from rest_framework import viewsets
 from rest_framework import generics
+import random
 
 from favourite.serializers import FavouriteSerializer
 
@@ -14,13 +17,9 @@ class Category(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
-class Vocabulary(viewsets.ModelViewSet):
-    # search_fields = ['$InEnglish']
-    # filter_backend = (filter.SearchFilter,)
+
+class VocabularyView(viewsets.ModelViewSet):
     queryset = Vocabulary.objects.all()
     serializer_class = VocabularySerializer
 
 
-class User(viewsets.ModelViewSet):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer

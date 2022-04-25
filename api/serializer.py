@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from .models import *
+import random
+
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -24,13 +26,16 @@ class VocabularySerializer(serializers.ModelSerializer):
         'Audio',
         ]
 
-class UserSerializer(serializers.ModelSerializer):
+class WordOfTheDaySerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
+        model = Vocabulary
         fields = [
-        'UserID',
-        'UserFullName',
-        'PhoneNumber',
-        'Email',
-        'Password',
+        'WordID',
+        'CategoryID',
+        'InEnglish',
+        'InNepali',
+        'InChinese',
+        'InPinYin',
+        'InDevnagari',
+        'Audio',
         ]

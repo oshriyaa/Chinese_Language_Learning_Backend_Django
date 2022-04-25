@@ -21,14 +21,7 @@ class Vocabulary(models.Model):
     class Meta:
         db_table = "vocabulary"
 
-class User(models.Model):
-    UserID = models.AutoField(primary_key=True)
-    UserFullName = models.CharField(max_length=50)
-    PhoneNumber = models.CharField(max_length=20)
-    Email = models.CharField(max_length=255)
-    Password = models.CharField(max_length=255)
-    class Meta:
-        db_table = "user"
+
 
 
 
